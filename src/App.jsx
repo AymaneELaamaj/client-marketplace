@@ -5,6 +5,7 @@ import LoginPage from './pages/auth/LoginPage'
 import RegisterPage from './pages/auth/RegisterPage'
 import AdminPage from './pages/admin/AdminPage'
 import MainLayout from './components/layout/MainLayout'
+import AdminRoute from './routes/AdminRoute'
 
 function App() {
   return (
@@ -13,7 +14,14 @@ function App() {
         <Route path="/" element={<MarketplacePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/admin" element={<AdminPage />} />
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <AdminPage />
+            </AdminRoute>
+          }
+        />
       </Route>
     </Routes>
   );

@@ -1,10 +1,17 @@
 import { Link } from "react-router-dom";
 import { ShoppingCart, User } from "lucide-react";
 import { useAuth } from "../../hooks/useAuth";
+import { useCart } from "../../hooks/useCart";
 
 export default function Navbar() {
   const { user, isAuthenticated, isAdmin, logout } = useAuth();
+  const { clearCart, totalItems } = useCart();
   const displayName = user?.name || user?.email || "Compte";
+
+  const handleLogout = () => {
+    clearCart();
+    logout();
+  };
 
   return (
     <nav className="navbar">
@@ -19,9 +26,6 @@ export default function Navbar() {
           <>
             <Link to="/login">Login</Link>
             <Link to="/register">Register</Link>
-            <button className="icon-button" type="button" aria-label="Panier">
-              <ShoppingCart size={20} />
-            </button>
           </>
         )}
 
@@ -33,11 +37,12 @@ export default function Navbar() {
               {isAdmin ? "Admin" : displayName}
             </span>
             {!isAdmin && (
-              <button className="icon-button" type="button" aria-label="Panier">
+              <Link className="icon-button" to="/cart" aria-label="Panier">
                 <ShoppingCart size={20} />
-              </button>
+                {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
+              </Link>
             )}
-            <button type="button" onClick={logout}>
+            <button type="button" onClick={handleLogout}>
               Logout
             </button>
           </>

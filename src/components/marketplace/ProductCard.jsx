@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ShoppingCart } from "lucide-react";
+import { useCart } from "../../hooks/useCart";
 
 const formatPrice = (price) => {
   return `${new Intl.NumberFormat("fr-MA").format(price)} DH`;
@@ -16,6 +17,7 @@ const getInitials = (name = "") => {
 };
 
 export default function ProductCard({ product }) {
+  const { addToCart } = useCart();
   const [imageFailed, setImageFailed] = useState(false);
   const categoryName =
     typeof product.category === "object" ? product.category?.name : "Sans categorie";
@@ -53,7 +55,7 @@ export default function ProductCard({ product }) {
           </span>
         </div>
 
-        <button type="button" disabled={!inStock}>
+        <button type="button" onClick={() => addToCart(product)} disabled={!inStock}>
           <ShoppingCart size={18} />
           Ajouter
         </button>

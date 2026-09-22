@@ -27,7 +27,7 @@ export default function Navbar() {
 
         {isAuthenticated && (
           <>
-            {isAdmin && <Link to="/admin">Admin</Link>}
+            {isAdmin && <Link to="/admin">Gestion boutique</Link>}
             <span className="user-chip">
               <User size={18} />
               {isAdmin ? "Admin" : displayName}

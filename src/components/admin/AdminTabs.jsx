@@ -15,6 +15,13 @@ export default function AdminTabs({ activeSection, onChange }) {
       >
         Categories
       </button>
+      <button
+        type="button"
+        className={activeSection === "orders" ? "is-active" : ""}
+        onClick={() => onChange("orders")}
+      >
+        Commandes
+      </button>
     </div>
   );
 }

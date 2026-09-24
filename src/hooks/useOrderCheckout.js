@@ -1,5 +1,6 @@
 import { useState } from "react";
 import api from "../api/axios";
+import { downloadBlob } from "../utils/downloadBlob";
 
 const toOrderPayload = (items) => ({
   items: items.map((item) => ({
@@ -7,17 +8,6 @@ const toOrderPayload = (items) => ({
     quantity: item.quantity,
   })),
 });
-
-const downloadBlob = (blob, filename) => {
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-
-  link.href = url;
-  link.download = filename;
-  link.click();
-
-  URL.revokeObjectURL(url);
-};
 
 export function useOrderCheckout() {
   const [createdOrder, setCreatedOrder] = useState(null);

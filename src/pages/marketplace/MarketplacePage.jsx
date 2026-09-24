@@ -26,7 +26,7 @@ export default function MarketplacePage() {
     <section className="marketplace-page">
       <div className="marketplace-heading">
         <div>
-          <p className="marketplace-eyebrow">Catalogue</p>
+          
           <h1>Marketplace</h1>
         </div>
         <p className="marketplace-count">

@@ -20,7 +20,7 @@ export default function Navbar() {
       </Link>
 
       <div className="nav-links">
-        <Link to="/">Marketplace</Link>
+        
 
         {!isAuthenticated && (
           <>
@@ -32,6 +32,7 @@ export default function Navbar() {
         {isAuthenticated && (
           <>
             {isAdmin && <Link to="/admin">Gestion boutique</Link>}
+            {!isAdmin && <Link to="/orders">Mes commandes</Link>}
             <span className="user-chip">
               <User size={18} />
               {isAdmin ? "Admin" : displayName}

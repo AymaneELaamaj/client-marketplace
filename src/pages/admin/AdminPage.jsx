@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { RotateCcw } from "lucide-react";
+import AdminOrdersPanel from "../../components/admin/AdminOrdersPanel";
 import AdminTabs from "../../components/admin/AdminTabs";
 import CategoryForm from "../../components/admin/CategoryForm";
 import CategoryTable from "../../components/admin/CategoryTable";
@@ -126,10 +127,12 @@ export default function AdminPage() {
           <p className="admin-eyebrow">Administration</p>
           <h1>Gestion Marketplace</h1>
         </div>
-        <button type="button" onClick={loadAdminData} disabled={loading || saving}>
-          <RotateCcw size={18} />
-          Actualiser
-        </button>
+        {activeSection !== "orders" && (
+          <button type="button" onClick={loadAdminData} disabled={loading || saving}>
+            <RotateCcw size={18} />
+            Actualiser
+          </button>
+        )}
       </div>
 
       <AdminTabs activeSection={activeSection} onChange={setActiveSection} />
@@ -181,6 +184,8 @@ export default function AdminPage() {
           />
         </div>
       )}
+
+      {activeSection === "orders" && <AdminOrdersPanel />}
     </section>
   );
 }
